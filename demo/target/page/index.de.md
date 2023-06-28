@@ -63,7 +63,7 @@ Kurzer Text zu Kernleistung 3
 
 "Zitat der Arztes/Ärztin zu Werten und eigener Profession. 2-3 Sätze. Persönliche Ansprache."
 
-— Name Arzt/Ärztin
+ — Name Arzt/Ärztin
 
 
 ## Team Header
@@ -84,12 +84,6 @@ Kurze Beschreibung des Teams. 2-3 Absätze. Persönliche Ansprache.
 [input type="text"  name="Name" required .mb-3]
 [input type="email" name="E-Mail" data-invalid-msg="Bitte geben Sie eine gültige E-Mail Adresse ein" .mb-3]
 [input type="tel" name="Telefon" .mb-3]
-
----
-
-[textarea name="Ihre Nachricht" required .mb-3 style="height: 120px;"]
-[input type="checkbox" name="Ihre Nachricht" label="Ich akzeptiere die Datenschutzbestimmungen" required .mb-3]
-[input type="submit" name="Absenden" value="Absenden" class="btn btn-primary" .my-3]
 
 ---
 

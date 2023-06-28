@@ -11,7 +11,9 @@ class T_BrixConfig
 
         public string $output_dir,
 
-        public string $context,
+        public string|null $context = null,
+
+        public string|null $context_file = null,
 
     ) {}
 

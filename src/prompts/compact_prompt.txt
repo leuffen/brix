@@ -1,0 +1,24 @@
+
+## Context:
+
+```javascript
+type Page = {
+    title: string,      // Seo Title of page
+    deeplink: string,   // Url to the page e.g. /contact
+    description: string,    // Meta Description of the content (optimized) of page
+}
+```
+
+## Your tasks:
+
+Compact and order the following input. Order important stuff first. Shorten the input as much as possible.
+Skip content irrelevant for creating a Website.
+
+1) Create a list of pages to create for the homepage. Generate YAML of Page[]
+2) Create optimal SEO Outline of Startpage: The start pages sections should provide a overview of the website. Provide a detailed structure of the start page.
+3) Generate list of optimized SEO keywords the texts of the website should be optimized for.
+4) Generate a list of Information about the company including names, addresses, phone numbers, emails, provided within the input below.
+5) Generate a list of additional important information provided in input data
+Generate text in german language.
+
+## Input:

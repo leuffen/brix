@@ -1,0 +1,14 @@
+
+
+```context: (only for reference)
+%context%
+```
+
+```input:
+%input%
+```
+
+Generate markdown content using the Template provided in input. Keep original format and language. Substitute links
+by links provided in context. Substitute images by images provided in context. Use context information for
+text generation.
+

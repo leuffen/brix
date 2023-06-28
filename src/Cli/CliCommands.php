@@ -3,6 +3,7 @@
 namespace Leuffen\Brix\Cli;
 
 use Leuffen\Brix\Api\OpenAiApi;
+use Leuffen\Brix\Business\CreatePageFlow;
 use Leuffen\Brix\Type\T_BrixConfig;
 use Phore\FileSystem\PhoreDirectory;
 
@@ -14,6 +15,8 @@ class CliCommands
     private PhoreDirectory $rootDir;
 
     private OpenAiApi $openAiApi;
+
+    private string $contextCombined = "";
 
     public function __construct() {
         // Try to find .brix.yml in the current directory and all parent directories
@@ -30,13 +33,34 @@ class CliCommands
         }
         $this->rootDir = $curDir;
 
+        $this->contextCombined .= $this->brixConfig->context ?? "";
+        if ($this->brixConfig->context_file !== null) {
+            $this->contextCombined .= "\n" . phore_file($this->brixConfig->context_file)->get_contents();
+        }
+
         $this->openAiApi = new OpenAiApi($curDir->withFileName("openai-key.txt")->get_contents());
     }
 
 
-    public function create_page(string $name)
+    public function run_task(string $task_file)
     {
-        echo "Hello World";
+        $flow = new CreatePageFlow($this->brixConfig, $this->rootDir, $this->openAiApi);
+        $flow->runTaskFile($task_file);
+    }
+
+    public function compact (string $file) {
+        $flow = new CreatePageFlow($this->brixConfig, $this->rootDir, $this->openAiApi);
+        $flow->compactFile($file);
+    }
+
+    public function patch (string $file) {
+        $flow = new CreatePageFlow($this->brixConfig, $this->rootDir, $this->openAiApi, $this->contextCombined);
+        $flow->patch($file);
+    }
+
+    public function patch_file (string $file) {
+        $flow = new CreatePageFlow($this->brixConfig, $this->rootDir, $this->openAiApi, $this->contextCombined);
+        $flow->patchFile($file);
     }
 
 }

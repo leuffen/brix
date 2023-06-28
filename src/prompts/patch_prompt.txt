@@ -1,0 +1,11 @@
+
+
+```context:
+%context%
+```
+
+```input:
+%input%
+```
+
+Apply "%task%" to input. Keep original language and text.
