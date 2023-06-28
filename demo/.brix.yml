@@ -1,0 +1,7 @@
+
+context: |
+    Die Zahnarztpraxis Dr. Wischmeyer ist in Dormagen und exisitiert seit 1992.
+    
+
+templates_dir: ./templates
+output_dir: ./target

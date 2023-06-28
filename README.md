@@ -1,2 +1,5 @@
-# brix
-Brix AI Based Content Creator
+# brix 
+
+```
+composer install brix
+```

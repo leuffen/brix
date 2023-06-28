@@ -1,0 +1,37 @@
+{
+    "name": "leuffen/brix",
+    "type": "project",
+    "description": "AI Based content creation",
+    "keywords": ["Brix"],
+    "homepage": "https://infracamp.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Leuffen",
+            "email": "matthes@leuffen.de"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "phore/filesystem": "*",
+        "phore/cli2": "*",
+        "orhanerday/open-ai": "dev-main",
+        "phore/hydrator": "dev-master"
+    },
+
+    "require-dev": {
+        "phore/tester": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leuffen\\Brix\\": "src"
+        },
+        "files": [
+            "src/bootstrap.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "preferred-install": "source"
+    }
+}
