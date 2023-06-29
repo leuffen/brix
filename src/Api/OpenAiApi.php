@@ -34,7 +34,7 @@ class OpenAiApi
     public function defineFunction ($name, $callback) {
         $reflection = new \ReflectionFunction($callback);
 
-        $this->messages["functions"][] = [
+        $definition  = [
             "name" => $name,
             "description" => (string)$reflection->getDocComment(),
             "parameters" => [
@@ -47,9 +47,20 @@ class OpenAiApi
                 ],
                 "required" => [],
             ],
-
         ];
 
+
+        foreach ($reflection->getParameters() as $parameter) {
+            $definition["parameters"]["properties"][$parameter->getName()] = [
+                "type" => "string",
+                "description" => ""
+            ];
+            if ( ! $parameter->isOptional()) {
+               $definition["parameters"]["required"][] = $parameter->getName();
+            }
+        }
+
+        $this->messages["functions"][] = $definition;
         $this->functions[$name] = [
             "callback" => $callback,
         ];
@@ -72,27 +83,31 @@ class OpenAiApi
             ];
         }
 
+        //print_r ($this->messages);
         $stream = $api->chat()->createStreamed($this->messages);
 
 
         $responseFull = [
-            "role" => null,
+            "role" => "assistant",
             "content" => "",
             "function_call" => [
-                "name" => null,
-                "arguments" => []
+                "name" => "",
+                "arguments" => ""
             ]
         ];
 
         foreach ($stream as $response) {
             $delta = $response->choices[0]->delta->toArray();
             if (isset($delta["function_call"])) {
+                //echo "<FFF>";
                 foreach ($delta["function_call"] as $key => $value) {
-                    $responseFull["function_call"][$key] = $value;
+
+                    $responseFull["function_call"][$key] .= $value;
                 }
                 continue;
             }
             foreach ($delta as $key => $value) {
+                if ($key === "role") continue;
                 if (isset($responseFull[$key])) {
                     $responseFull[$key] .= $value;
                     continue;
@@ -103,25 +118,24 @@ class OpenAiApi
 
         }
 
-
-        if ($responseFull["function_call"]["name"] !== null) {
+        //echo "\n" . json_encode($responseFull);;
+        $this->messages["messages"][] = $responseFull;
+        if ($responseFull["function_call"]["name"] !== "") {
             $functionName = $responseFull["function_call"]["name"];
-            $functionArguments = json_decode($responseFull["function_call"]["arguments"]);
+            $functionArguments = json_decode($responseFull["function_call"]["arguments"], true) ?? [];
+
             $function = $this->functions[$functionName]["callback"];
-            echo "\n> Calling function $functionName with arguments: \n";
-            $return = $function($functionArguments);
+            echo "\n> Calling function $functionName with arguments: " . json_encode($functionArguments) . "\n";
+            $return = $function(...$functionArguments);
             $this->messages["messages"][] = [
-                "content" => $return,
+                "content" => json_encode($return),
                 "role" => "function",
                 "name" => $functionName
             ];
             $this->textComplete(null, $streamOutput);
-        } else {
-            $this->messages["messages"][] = [
-                "content" => $responseFull["content"],
-                "role" => "assistant"
-            ];
         }
+
+
 
         return new OpenAiResult($responseFull["content"]);
     }
