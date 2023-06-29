@@ -60,6 +60,9 @@ class OpenAiApi
             }
         }
 
+        if ($definition["parameters"]["properties"] === [])
+            $definition["parameters"]["properties"] = new \stdClass();
+
         $this->messages["functions"][] = $definition;
         $this->functions[$name] = [
             "callback" => $callback,
