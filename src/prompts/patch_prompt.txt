@@ -8,4 +8,4 @@
 %input%
 ```
 
-Apply "%task%" to input. Keep original language and text.
+Please perform the task '%task%' on the given input without altering the original language or text. Present the changes made to the input in patch diff format.

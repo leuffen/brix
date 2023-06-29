@@ -8,7 +8,4 @@
 %input%
 ```
 
-Generate markdown content using the Template provided in input. Keep original format and language. Substitute links
-by links provided in context. Substitute images by images provided in context. Use context information for
-text generation.
-
+Please utilize the provided template to create markdown content while preserving the original format and language. Replace any links with those provided in the context, and substitute any images with those given in the context. Ensure that the text generated incorporates the information from the context.

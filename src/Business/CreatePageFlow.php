@@ -75,6 +75,7 @@ class CreatePageFlow
         $task = readline("Task: ");
         $prompt = str_replace("%task%", $task, $prompt);
 
+        echo $prompt;
         $data = $this->openAiApi
             ->textComplete($prompt, streamOutput: true)
             ->getText();

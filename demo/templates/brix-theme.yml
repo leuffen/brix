@@ -1,0 +1,10 @@
+
+
+templates:
+    - name: startpage
+      file: index.md
+      description: Startseite
+
+    - name: section_index
+      file: section-index.md
+      description: Übersichtsseite für eine Sektion
