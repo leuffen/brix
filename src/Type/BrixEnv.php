@@ -2,6 +2,8 @@
 
 namespace Leuffen\Brix\Type;
 
+use Lack\Keystore\KeyStore;
+use Lack\Keystore\Type\Service;
 use Lack\OpenAi\LackOpenAiClient;
 use Lack\OpenAi\Logger\CliLogger;
 use Leuffen\Brix\Api\OpenAiApi;
@@ -11,7 +13,7 @@ class BrixEnv
 {
 
     public function __construct(
-        private string $openAiApiKey,
+        public KeyStore $keyStore,
         public readonly T_BrixConfig $brixConfig,
         public readonly PhoreDirectory $rootDir,
         public readonly PhoreDirectory $targetDir,
@@ -23,7 +25,7 @@ class BrixEnv
 
 
     public function getOpenAiApi() : LackOpenAiClient {
-        return new LackOpenAiClient($this->openAiApiKey, new CliLogger());
+        return new LackOpenAiClient($this->keyStore->getAccessKey(Service::OpenAi), new CliLogger());
     }
 
 

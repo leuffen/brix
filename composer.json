@@ -4,7 +4,7 @@
     "description": "AI Based content creation",
     "keywords": ["Brix"],
     "homepage": "https://infracamp.org",
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Matthias Leuffen",
@@ -17,7 +17,8 @@
         "phore/cli2": "*",
         "phore/hydrator": "dev-master",
         "phore/system": "dev-master",
-        "lack/openai": "dev-main"
+        "lack/openai": "dev-main",
+        "lack/keystore": "dev-main"
     },
 
     "require-dev": {

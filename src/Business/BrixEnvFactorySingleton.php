@@ -2,6 +2,7 @@
 
 namespace Leuffen\Brix\Business;
 
+use Lack\Keystore\KeyStore;
 use Leuffen\Brix\Type\BrixEnv;
 use Leuffen\Brix\Type\T_BrixConfig;
 
@@ -41,7 +42,7 @@ class BrixEnvFactorySingleton
         }
 
         return new BrixEnv(
-            $curDir->withFileName("openai-key.txt")->get_contents(),
+            KeyStore::Get(),
             $brixConfig,
             $curDir,
             $curDir->withRelativePath($brixConfig->output_dir)->asDirectory(),
