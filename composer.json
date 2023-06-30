@@ -17,7 +17,8 @@
         "phore/cli2": "*",
         "openai-php/client": "^0.6",
         "phore/hydrator": "dev-master",
-        "php-http/guzzle7-adapter": "1.x-dev"
+        "php-http/guzzle7-adapter": "1.x-dev",
+        "phore/system": "dev-master"
     },
 
     "require-dev": {

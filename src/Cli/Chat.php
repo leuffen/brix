@@ -38,7 +38,17 @@ class Chat
             function ($repository) {
             return "Image1, Image2, Image3";
         });
-
+        $ai->defineFunction("exec_shell_command",
+            /**
+             * Run a command on the bash shell of the linux operating system. Returns the output.
+             */
+            function ($command) {
+                try {
+                    return phore_exec($command);
+                } catch (\Exception $e) {
+                    return "Error: " . $e->getMessage();
+                }
+        });
         $ai->defineFunction("list_files", function ($path= ".") {
             return glob($path . "/*");
         });
