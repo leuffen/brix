@@ -3,6 +3,7 @@
 namespace Leuffen\Brix\Business;
 
 use Cassandra\Date;
+use Lack\OpenAi\LackOpenAiClient;
 use Leuffen\Brix\Api\OpenAiApi;
 use Leuffen\Brix\Type\T_BrixConfig;
 use Phore\FileSystem\PhoreDirectory;
@@ -13,7 +14,7 @@ class CreatePageFlow
     public function __construct(
         private T_BrixConfig $config,
         private PhoreDirectory $brixDir,
-        private OpenAiApi $openAiApi,
+        private LackOpenAiClient $openAiApi,
         private string $contextCombined = ""
     )
     {}
@@ -39,8 +40,7 @@ class CreatePageFlow
         $targetFile->touch();
         $targetFile->set_contents(
             $this->openAiApi
-                ->textComplete($prompt, streamOutput: true)
-                ->getText()
+                ->textComplete($prompt, streamOutput: true);
         );
 
     }
@@ -77,8 +77,7 @@ class CreatePageFlow
 
         echo $prompt;
         $data = $this->openAiApi
-            ->textComplete($prompt, streamOutput: true)
-            ->getText();
+            ->textComplete($prompt, streamOutput: true);
 
     }
 
@@ -90,8 +89,7 @@ class CreatePageFlow
         $prompt = str_replace("%context%", $this->contextCombined, $prompt);
 
         $data = $this->openAiApi
-            ->textComplete($prompt, streamOutput: true)
-            ->getText();
+            ->textComplete($prompt, streamOutput: true);
 
     }
 

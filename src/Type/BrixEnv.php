@@ -2,6 +2,8 @@
 
 namespace Leuffen\Brix\Type;
 
+use Lack\OpenAi\LackOpenAiClient;
+use Lack\OpenAi\Logger\CliLogger;
 use Leuffen\Brix\Api\OpenAiApi;
 use Phore\FileSystem\PhoreDirectory;
 
@@ -20,8 +22,8 @@ class BrixEnv
     }
 
 
-    public function getOpenAiApi() : OpenAiApi {
-        return new OpenAiApi($this->openAiApiKey);
+    public function getOpenAiApi() : LackOpenAiClient {
+        return new LackOpenAiClient($this->openAiApiKey, new CliLogger());
     }
 
 

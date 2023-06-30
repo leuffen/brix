@@ -22,10 +22,6 @@ class Chat
             return "github.com/leuffen/$name";
         });
         $ai->defineFunction("ask_user_question",
-            /**
-             * The only method to interact with the user. The question is passed as first parameter.
-             * The user input is returned.
-             */
             function ($question) {
                 return readline($question . ": ");
             }
