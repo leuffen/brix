@@ -1,0 +1,11 @@
+
+# Address
+name: Max
+surname: Mustermann
+street: Musterstraße 9-11
+zip: 45130
+city: Essen
+
+# Load from google api
+google_maps_embed_url: https://www.google.com/maps/embed/v1/place?q=51.4384291,7.011142
+google_maps_link_url: https://www.google.com/maps/place/Musterstra%C3%9Fe+9-11+45130+Essen/@51.4384291,7.011142

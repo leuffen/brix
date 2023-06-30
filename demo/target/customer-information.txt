@@ -1,78 +1,10 @@
 
-### Templates availabe
 
 
-#### Images
+Adresse:
+Max Mustermann
+Musterstraße 9-11
+45130 Essen
 
-![Zahnarzt-Team mit allen Mitarbeitern](https://cdn.leuffen.de/23/23-1.jpg)
-![Älterer Herr auf Zahnarztstuhl](https://cdn.leuffen.de/23/231-1.jpg)
-![Foto von Zahnärztin](https://cdn.leuffen.de/23/236-1.jpg)
-![Wurstbrot mit Bohnen](https://cdn.leuffen.de/23/23661.jpg)
-
-
-
-#### Accordion
-
----
-{: layout="use: accordion()"}
-
-
-### 1) List of pages to create for the homepage in YAML format:
-
-```yaml
-- title: Home
-  deeplink: /
-  description: Seo Description of Home
-
-- title: Leistungen
-  deeplink: /leistungen
-  description: Seo Description of Leistungen
-
-- title: Über uns
-  deeplink: /ueber-uns
-  description: Seo Description of Über uns
-
-- title: Kontakt/Anfahrt
-  deeplink: /kontakt-anfahrt
-  description: Seo Description of Kontakt/Anfahrt
-
-- title: Aktuelles/Blog
-  deeplink: /aktuelles
-  description: Seo Description of Aktuelles/Blog
-
-- title: Galerie Zahnräder
-  deeplink: /galerie-zahnräder
-  description: Seo Description of Galerie Zahnräder
-
-- title: Projekte und mehr
-  deeplink: /projekte-und-mehr
-  description: Seo Description of Projekte und mehr
-
-- title: Datenschutz
-  deeplink: /datenschutz
-  description: Seo Description of Datenschutz
-
-- title: Impressum
-  deeplink: /impressum
-  description: Seo Description of Impressum
-
-- title: Links/Downloadbereich
-  deeplink: /links-downloadbereich
-  description: Seo Description of Links/Downloadbereich
-```
-
-- Zielgruppe: Unsere Hauptzielgruppe sind Erwachsene und Familien in der Umgebung unserer Praxis. Unsere Patienten legen Wert auf eine professionelle, aber freundliche und entspannte Umgebung.
-
-- Zweck des Textes: Die Texte sollen Patienten über unsere Praxis, unsere Dienstleistungen und unsere Fachkenntnisse informieren. Darüber hinaus sollen sie dazu ermutigen, einen Termin zu vereinbaren.
-
-- Themen: Die Themen umfassen allgemeine Zahnmedizin, Kinderzahnheilkunde, ästhetische Zahnmedizin, Prophylaxe und Dentalhygiene, sowie spezielle Verfahren wie Implantologie und Zahnaufhellung.
-
-- SEO-Ziele: Wir möchten in der lokalen Suche in unserer Stadt und Umgebung für Schlüsselbegriffe wie "Zahnarzt", "ästhetische Zahnmedizin", "Zahnreinigung" und "Zahnimplantate" gut positioniert sein.
-
-- Tonalität: Die Texte sollen freundlich, einladend und verständlich sein, aber gleichzeitig die Professionalität und Expertise unserer Praxis widerspiegeln.
-
-- Inhaltlicher und stilistischer Rahmen: Die Texte sollten klare Absätze, leicht lesbare Schriftarten und gegebenenfalls relevante Bilder enthalten. Sie sollten für eine allgemeine Zielgruppe leicht verständlich sein und medizinische Fachbegriffe erklären.
-
-- Markenbotschaft und USP: Unsere Praxis bietet eine vollständige Palette von Zahnmedizindiensten an und legt besonderen Wert auf eine entspannte und angstfreie Umgebung. Unsere Fachleute sind hochqualifiziert und verwenden die neuesten Technologien und Methoden.
-
-- Call to Action (CTA): Nach dem Lesen der Texte möchten wir, dass die Besucher einen Termin online buchen, anrufen, um einen Termin zu vereinbaren, oder uns eine E-Mail mit ihren Fragen schicken.
+Telefon: 0163123456
+Telefax: 0241 44 72 73

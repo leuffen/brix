@@ -1,0 +1,13 @@
+
+# Address
+name: ""
+surname: ""
+street: ""
+zip: ""
+city: ""
+
+# Insert Google Map Embed Url to this Address
+google_maps_embed_url: ""
+
+# Insert Google Map Link Url to this Address
+google_maps_link_url: ""

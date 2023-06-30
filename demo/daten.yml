@@ -1,0 +1,13 @@
+
+# Address
+name: "Max"
+surname: "Mustermann"
+street: "Musterstraße 9-11"
+zip: "45130"
+city: "Essen"
+
+# Insert Google Map Embed Url to this Address
+google_maps_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24240.64071023833!2d6.82261204607889!3d51.084914327642846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93dc6e3bbf649%3A0x8dfa57edc78bade6!2sMusterstra%C3%9Fe%209-11%2C%2045130%20Essen%2C%20Germany!5e0!3m2!1sen!2sde!4v1626156480831!5m2!1sen!2sde"
+
+# Insert Google Map Link Url to this Address
+google_maps_link_url: "https://www.google.de/maps/place/Musterstra%C3%9Fe+9-11,+45130+Essen,+Germany"

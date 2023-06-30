@@ -11,9 +11,14 @@ class FileAccessFunctions
 
     public PhoreDirectory $rootDir;
 
-    public function __construct(string|PhoreDirectory $rootDir) {
+    public bool $readonly = false;
+
+    public function __construct(string|PhoreDirectory $rootDir, bool $readonly = false) {
         $this->rootDir = phore_dir($rootDir);
+        $this->readonly = $readonly;
     }
+
+
 
     /**
      * @param string $filter
@@ -45,11 +50,30 @@ class FileAccessFunctions
         #[AiParam("The raw string contents to be written to file")] string $content
     ) {
         try {
-            $this->rootDir->withRelativePath($uri)->asFile()->set_contents($uri, $content);
+            if ($this->readonly)
+                $uri = $uri . ".readonly";
+            $this->rootDir->withRelativePath($uri)->asFile($uri)->set_contents($content);
             echo "File contents successful written to $uri";
         } catch (\Exception $e) {
             return "ERROR: ". $e->getMessage();
         }
     }
+
+    /*
+    #[AiFunction("Apply a diff style patch to the file to alter its contents. Use this function wherever to apply changes to existing files.")]
+    public function alter_file(
+        #[AiParam("The files uri to set content")] string $uri,
+        #[AiParam("The raw diff syntax to alter the original file")] string $diff
+    ) {
+        try {
+            if ($this->readonly)
+                $uri = $uri . ".diff";
+            $this->rootDir->withRelativePath($uri)->asFile($uri)->set_contents($diff);
+            echo "Diff applied to file $uri";
+        } catch (\Exception $e) {
+            return "ERROR: ". $e->getMessage();
+        }
+    }
+    */
 
 }
