@@ -50,7 +50,7 @@ class File
             case "json":
                 return "JSON-Format";
             case "md":
-                return "Markdown-Format";
+                return "Frontmatter Markdown-Format";
             default:
                 return "Format";
         }
@@ -99,7 +99,7 @@ class File
             $this->singleFileAccessFunctions->setFiles($file, $file,);
             $dataFormat = $this->getDataFormat($file->getExtension());
 
-            $prompt = "Load {$dataFormat} data from datasource. Remove any individual data (values, names, etc). Imagine the data-structure without any data in it. Output the data-structure. Preserve the format, whitespace and comments. Save the structure in valid {$dataFormat} to datasource.";
+            $prompt = "Load {$dataFormat} data from datasource. Remove any individual data (values, names, etc). Replace Names and personal information inside text by '(Insert <type of data> here)'. Imagine the data-structure without any data in it. Output the data-structure. Preserve the format, whitespace and comments. Save the structure in valid {$dataFormat} to datasource.";
 
 
             $this->client->reset($this->jobDescription);
@@ -118,7 +118,7 @@ class File
             $this->singleFileAccessFunctions->setFiles($file, $file,);
             $dataFormat = $this->getDataFormat($file->getExtension());
 
-            $prompt = "Load {$dataFormat} data from datasource. Fill missing information with data from <CONTEXT> and call available Helper Functions.  Keep witespace, comments and structure. Save the structure in valid {$dataFormat} to datasource.";
+            $prompt = "Load {$dataFormat} data from datasource. Fill/Replace information with data from <CONTEXT> and call available Helper Functions.  Keep witespace, comments and structure. Save the structure in valid {$dataFormat} to datasource.";
 
 
             $this->client->reset($this->jobDescription);

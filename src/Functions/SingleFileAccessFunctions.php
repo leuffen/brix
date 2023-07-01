@@ -39,8 +39,8 @@ class SingleFileAccessFunctions
         return $this->file->get_contents();
     }
 
-    #[AiFunction("Write modified data to datasource. Use to save modified data.")]
-    public function writeData(#[AiParam("New content as raw string.")] string $newContent) {
+    #[AiFunction("Write modified data to datasource. Always provide modified data in parameter newContent.")]
+    public function writeData(#[AiParam("New content as raw string. Required!")] string $newContent) {
         return $this->outFile->set_contents($newContent);
     }
 
