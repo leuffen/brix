@@ -1,0 +1,23 @@
+# Adresse
+name: "Dr. Manuel Brotschläger"
+street: "Kölner Straße 123"
+zip: "45131"
+city: "Essen"
+
+# Schreibe den Titel immer in Großbuchstaben
+title: ""
+
+## Telefonnummer ohne Sonderzeichen im +49xxxx Format
+telephone: "+49491234"
+
+## Telefonnummer in Blockformat e.g. (1234) 24 24 24
+telephone_text: ""
+
+telefax: "+4930328884"
+
+## Load Goolge Maps Embed URL using Function
+google_maps_embed_url: "https://www.google.com/maps/embed/v1/place?q=51.4468439,6.9685615"
+
+## Load Goolge Maps Link URL using Function
+google_maps_link_url: "https://www.google.com/maps/place/K%C3%B6lner+Stra%C3%9Fe+123%2C+45131+Essen/@51.4468439,6.9685615"
+}

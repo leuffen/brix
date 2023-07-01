@@ -2,9 +2,11 @@
 
 
 Adresse:
-Max Mustermann
-Musterstraße 9-11
-45130 Essen
+========
+Dr. Manuel Brotschläger
+Manuel Brotschläger
+Kölner Straße 123
+45131 Essen
 
-Telefon: 0163123456
-Telefax: 0241 44 72 73
+Telefon: +49491234
+Telefax: +4930328884

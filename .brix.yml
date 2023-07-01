@@ -1,7 +1,4 @@
 
-context: |
-    Verfasse Website für die Zahnarztpraxis. Schreibe in Deutsch. Schreibe kurz, prägnant und SEO optimiert.
-    Die Zahnarztpraxis Dr. Wischmeyer ist in Dormagen und exisitiert seit 1992.
 
 context_file: ./demo/target/customer-information.txt
 

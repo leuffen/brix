@@ -13,7 +13,7 @@ class GoogleMapsFunctions
 
     }
 
-    #[AiFunction("Query Google Maps API to retrieve Map Links to specified address. Will return a direct map link URL and a embedding URL.")]
+    #[AiFunction("Helper Function: Get Google Maps Embedding-Link URLs for a specific address. Returns link to google maps and embedding link to embed in iframe.")]
     public function getGoogleMapsUrls(
         #[AiParam("The full address e.g. Longstreet 1 45130 Essen Germany")] string $address
     ){
