@@ -120,11 +120,18 @@ class File
             $this->singleFileAccessFunctions->setFiles($file, $file,);
             $dataFormat = $this->getDataFormat($file->getExtension());
 
-            $prompt = "Load {$dataFormat} data from datasource. Fill/Replace information with data from <CONTEXT> and call available Helper Functions.  Keep witespace, comments and structure. Save the structure in valid {$dataFormat} to datasource.";
+            //$prompt = "Your job is to load data in {$dataFormat} from datasource. Fill in data provided in context. Finally save the data als valid $dataFormat to datasource. The Context data: \"\"\"{$this->brixEnv->contextCombined}\"\"\". Preserve the format, whitespace and comments.";
 
+            echo $prompt;
 
-            $this->client->reset($this->jobDescription);
-            $this->client->textComplete($prompt, streamOutput: true);
+            $this->client->reset();
+
+            $this->client->textComplete("Start by loading the {$dataFormat} inputdata from datasource.", streamOutput: true);
+            $this->client->textComplete("Now replace the values in inputdata with following contextual data: '''{$this->brixEnv->contextCombined}''''. Preserve the structure, whitspace, comments of inputdata. ", streamOutput: true);
+
+            $this->client->textComplete("Is there any data that needs to be reloaded from api to make sense? Perform the api calls! ", streamOutput: true);
+            $this->client->textComplete("Write the modified data in valid {$dataFormat} to datasource ", streamOutput: true);
+
         }
     }
 

@@ -34,7 +34,7 @@ class BrixEnvFactorySingleton
                 throw new \InvalidArgumentException("Cannot find .brix.yml in current or parent directories.");
         }
         /* @var $brixConfig T_BrixConfig */
-        $this->rootDir = $curDir;
+        $rootDir = $curDir;
 
         $contextCombined = $brixConfig->context ?? "";
         if ($brixConfig->context_file !== null) {

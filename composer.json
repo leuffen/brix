@@ -19,7 +19,8 @@
         "phore/hydrator": "dev-master",
         "phore/system": "dev-master",
         "lack/openai": "dev-main",
-        "lack/keystore": "dev-main"
+        "lack/keystore": "dev-main",
+        "lack/frontmatter": "dev-main"
     },
 
     "require-dev": {

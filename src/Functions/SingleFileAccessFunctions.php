@@ -12,8 +12,8 @@ class SingleFileAccessFunctions
     private string|null $dataFormat = "raw";
 
     public function __construct(
-        public string|PhoreFile $file,
-        public string|PhoreFile|null $outFile = null
+        public string|\Closure|PhoreFile $file,
+        public string|\Closure|PhoreFile|null $outFile = null
     )
     {
         $this->setFiles($this->file, $this->outFile);
@@ -26,21 +26,29 @@ class SingleFileAccessFunctions
 
 
     public function setFiles(
-        string|PhoreFile $file,
-        string|PhoreFile|null $outFile = null,
+        string|\Closure|PhoreFile $file,
+        string|\Closure|PhoreFile|null $outFile = null,
         string|null $dataFormat = null
     ){
-        $this->file = phore_file($file);
-        $this->outFile = phore_file($outFile ?? $file);
+        if ( ! ($file instanceof \Closure)) {
+            $this->file = phore_file($file);
+        }
+        if ( ! ($outFile instanceof \Closure)) {
+            $this->outFile = phore_file($outFile ?? $file);
+        }
     }
 
     #[AiFunction("Load input data from datasource. Use only this function to load input data. Returns data as string.")]
     public function readData() {
+        if ($this->file instanceof \Closure)
+            return ($this->file)();
         return $this->file->get_contents();
     }
 
-    #[AiFunction("Write modified data to datasource. Always provide modified data in parameter newContent.")]
-    public function writeData(#[AiParam("Content to save. Required!")] string $content) {
+    #[AiFunction("Write modified data to datasource. Always provide data in parameter content.")]
+    public function writeData(#[AiParam("Content to save to datasource. Required!")] string $content) {
+        if ($this->outFile instanceof \Closure)
+            return ($this->outFile)($content);
         return $this->outFile->set_contents($content);
     }
 
