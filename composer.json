@@ -11,6 +11,7 @@
             "email": "matthes@leuffen.de"
         }
     ],
+    "bin": ["bin/brix"],
     "require": {
         "php": ">=8.1",
         "phore/filesystem": "*",
