@@ -40,8 +40,8 @@ class SingleFileAccessFunctions
     }
 
     #[AiFunction("Write modified data to datasource. Always provide modified data in parameter newContent.")]
-    public function writeData(#[AiParam("New content as raw string. Required!")] string $newContent) {
-        return $this->outFile->set_contents($newContent);
+    public function writeData(#[AiParam("Content to save. Required!")] string $content) {
+        return $this->outFile->set_contents($content);
     }
 
 
