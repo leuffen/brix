@@ -20,3 +20,4 @@ google_maps_embed_url: "https://www.google.com/maps/embed/v1/place?q=51.4468439,
 
 ## Load Goolge Maps Link URL using Function
 google_maps_link_url: "https://www.google.com/maps/place/K%C3%B6lner+Stra%C3%9Fe+123%2C+45131+Essen/@51.4468439,6.9685615"
+}

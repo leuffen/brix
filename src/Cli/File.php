@@ -39,7 +39,6 @@ class File
         $client->reset($jobDescription);
         $client->addClass(new GoogleMapsFunctions($brixEnv->keyStore->getAccessKey(Service::GoogleMaps)));
         $client->addClass($this->singleFileAccessFunctions = new SingleFileAccessFunctions(getcwd()));
-        $client->addClass(new PythonFunctions());
     }
 
     private function getDataFormat(string $fileExtension) {
