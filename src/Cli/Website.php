@@ -80,4 +80,14 @@ class Website
 
 
     }
+
+    public function list(array $argv, string $lang = "de") {
+        $filter = $argv[0] ?? "*";
+        echo "\nList availabe template pid:\n";
+        $pages = $this->templateRepo->list($filter, $lang);
+        foreach ($pages as $page) {
+            echo ">" . $page . "\n";
+        }
+    }
+
 }
