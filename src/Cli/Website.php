@@ -10,6 +10,7 @@ use Leuffen\Brix\Business\BrixEnvFactorySingleton;
 use Leuffen\Brix\Functions\GoogleMapsFunctions;
 use Leuffen\Brix\Functions\SingleFileAccessFunctions;
 use Leuffen\Brix\Plugins\Seo\SeoAnalyzer;
+use Leuffen\Brix\Plugins\Website\WebsiteCreatorEditor;
 use Leuffen\Brix\Type\BrixEnv;
 use Phore\Cli\Exception\CliException;
 
@@ -36,8 +37,21 @@ class Website
 
         $pid = $argv[0];
 
+
+
+        $logic = new WebsiteCreatorEditor(
+            context: $this->brixEnv->contextCombined,
+            targetRepo: $this->targetRepo,
+            templateRepo: $this->templateRepo,
+            client: $this->brixEnv->getOpenAiApi()
+        );
+        $logic->createPage($pid, $lang);
+        return;
+
+
         $targetPage = $this->targetRepo->selectPid($pid, $lang)->create();
-        $example = $this->templateRepo->selectPid($pid, $lang)->get();
+        $instructions = $this->templateRepo->selectPid($pid, $lang)->get();
+        $elements = $this->templateRepo->selectPid($pid, $lang)->getElementsDef();
 
         $openAi = $this->brixEnv->getOpenAiApi();
 
@@ -49,16 +63,28 @@ You create content for a website using example sites. Some information about the
 {$this->brixEnv->contextCombined}
 
 Use this information only for reference. Don't use it to create content. It is important to keep the number and order of
-structure of headings, blockquotes and paragraphs. Never edit styling specified in curved brackets {}. Preserve <hr> specified by ---.
+structure of headings, blockquotes, images, tables etc. and paragraphs. But You are allowed split paragraphs into separate paragraphs. Never edit styling specified in curved brackets {}. Preserve <hr> specified by ---.
 Don't modify the number of heading or order of levels.
 
-Preserve the language detected from example, structure, whitespaces, order and number of outline and formatting in brackets.
-Don't modify the number of heading or order of levels. Never output original content. Suggest new content based on the context.
+Choose the following elements to create content: Use only the following elements to create content: Preserve
+their structure whitepsce and order of subelements.
+
+"""{$elements}"""
+
 EOT;
 
 
-
         $prompt = <<<EOT
+
+Create seo optimized content using only the sections defined below. Imagine you are a seo and internet marketing expert
+knowing, that you write for your audience.
+
+{$instructions->body}
+
+EOT;
+
+
+        /*$prompt = <<<EOT
 
 Replace the content from the example below with seo optimized text based on the websites context. Imagine
 what the website owner would write if he was a seo and internet marketing expert knowing, that you write for
@@ -68,11 +94,11 @@ your audience.
 
 """{$example->body}"""
 
-EOT;
+EOT;*/
 
 
 
-        $targetPage->header = $example->header;
+        $targetPage->header = $instructions->header;
         $openAi->reset($systemRole);
         $targetPage->body = $openAi->textComplete($prompt, streamOutput: true);
 
@@ -116,29 +142,22 @@ EOT;
         }
     }
 
-
-    public function templatify (array $argv, string $lang = "de") {
+    public function modify (array $argv, string $lang = "de") {
         if (count($argv) !== 1)
-            throw new CliException("templatify [pid] expects exact 1 parameter");
+            throw new CliException("modify [pid] expects exact 1 parameter");
 
         $pid = $argv[0];
 
-        $template = $this->templateRepo->selectPid($pid, $lang)->get();
+        $logic = new WebsiteCreatorEditor(
+            context: $this->brixEnv->contextCombined,
+            targetRepo: $this->targetRepo,
+            templateRepo: $this->templateRepo,
+            client: $this->brixEnv->getOpenAiApi()
+        );
+        $logic->editPage($pid, $lang);
 
-        $prompt = <<<EOT
-
-Analyze the structure of the document. Create a template with the same structure and formatting.
-Replace all text (including headings, blockquotes, etc) with a abstract description of the content (length, structure, formatting, etc.). Keep the
-original structure and formatting. Return valid markdown.
-
-\"\"\"
-{$template->body}
-\"\"\"
-
-EOT;
-
-        $openAi = $this->brixEnv->getOpenAiApi();
-        $template->body = $openAi->textComplete($prompt, streamOutput: true);
     }
+
+
 
 }
