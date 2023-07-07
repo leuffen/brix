@@ -16,6 +16,9 @@ class T_BrixConfig
          */
         public string|null $context = "",
 
+        /**
+         * @var string|null
+         */
         public string|null $context_file = null,
 
     ) {}

@@ -37,7 +37,7 @@ class BrixEnvFactorySingleton
         $rootDir = $curDir;
 
         $contextCombined = $brixConfig->context ?? "";
-        if ($brixConfig->context_file !== null) {
+        if (isset ($brixConfig->context_file)) {
             $contextCombined .= "\n" . phore_file($brixConfig->context_file)->get_contents();
         }
 

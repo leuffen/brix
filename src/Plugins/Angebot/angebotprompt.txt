@@ -1,0 +1,19 @@
+Du erstellst ein Angebot für einen Kunden.
+
+Ergänze im folgenden Frontmatter-Markdown die fehlenden Daten, formuliere den Text passend zu der Anfrage,
+entferne nicht angefragte Leistungen und ergänze in der Leistungsbeschreibung Sondervereinbarungen.
+
+
+Beispielangebot:
+
+"""
+{{demo_angebot}}
+"""
+
+Ersetze Anrede und Name durch aktuelle Anbaben. Füge kein "Mit freundlichen Grüßen" hinzu.
+
+---
+
+Erstelle ein Angebot in Form des Beispielangebots für:
+
+{{userContent}}
