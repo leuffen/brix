@@ -41,7 +41,7 @@ class WebsiteCreatorEditor
         $this->client->reset($aiTpl->getSystemContent());
 
         $targetPage->header = $instructions->header;
-        $targetPage->body = $this->client->textComplete($aiTpl->getUserContent(), streamOutput: true);
+        $targetPage->body = $this->client->textComplete($aiTpl->getUserContent(), streamOutput: true)->getTextCleaned();
         $this->targetRepo->storePage($targetPage);
     }
 

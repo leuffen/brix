@@ -1,0 +1,50 @@
+Imagine you are a reader of a website with the following context:
+
+{{context}}
+
+---
+
+Imageine you are on the page "{{subject}}" of the website. Please answer the following questions:
+
+
+- List all topics that you would expect to be covered on the page. Include a short summary of what you expect to find on the page for each topic.
+
+Content:
+- What do you expect from the article?
+- What engages you to read the article?
+- What disengages you from reading the article?
+- What do you expect to learn from the article?
+- What do you already know from other websites?
+- What new information would suprise you?
+- What new information would be valuable to you?
+- What should be the conversion goal of the article?
+- What feelings should be triggered by the article for you to convert?
+- How can these feelings be triggered?
+- What should be the call to action of the article?
+
+Context:
+- Create a list of all missing context information.
+- Which context information is not relevant?
+- Which context information should be added to write a better article?
+
+SEO:
+- What Keywords should the article rank for for best performance (most important on top)?
+- What Variations of the keywords should the article rank for?
+- What is the search intent of the keywords?
+- What audience / demographics should the article target?
+- What is the approx search volume of the keywords?
+- What is the approx competition of the keywords?
+
+
+
+Structure of the text:
+- What should be the story of the article? What should be the flow of the article?
+- What feelings should be triggered to convert the reader?
+- What style, tone and voice should be used?
+- What else is important to trigger these feelings?
+- How should the reader be guided through the article? How should the reader be called? What tonality should be used?
+
+- Generate a optimal outline as a numbered list (markdown) of content sections. What information should be in each section?
+
+
+Output text short, precise and to the point. Write in languate "{{language}}".

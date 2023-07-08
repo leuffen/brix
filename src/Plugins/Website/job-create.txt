@@ -17,13 +17,15 @@ The term section is defined as a h1 or h2 element including all content till the
 Choose the following elements to create content: Use only the following elements to create content: Preserve
 their structure whitespace and order of subelements.
 
-"""{{templates}}"""
 
 ---
 
 Create seo optimized content in "{{lang}}" language using only the sections defined below.
 
-Follow the following rules:
+The example:
 
+"""
 {{instructions}}
+"""
 
+Replace the text in the example with optimized content.

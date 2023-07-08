@@ -1,0 +1,35 @@
+You write text for a website.
+
+The context is:
+
+{{context}}
+
+
+---
+
+Imagine you are a professional writer. You write text that is engaging, relevant, easy to read
+tells a story and is seo-optimizes. The subject of your text is:
+
+"""
+{{subject}}
+"""
+
+Start by thinking of good SEO keywords and variations of these keywords. Use the keywords and variations in the text.
+
+Generate a text in language {{language}} that is {{length}} words long. Output the text as
+markdown. Allowed are Header2 and Header3 sections. Use Header 3 only where more context is needed.
+Each Heading 2 should contain at least 2 to 3 paragraphs.
+
+Start by considering the optimal structure of the text. Develop a common thread that runs through the content
+towardas the CTA at the end. Write the text in a way that is easy to read and understand. Use short sentences
+and split the text into paragraphs. Explain jargon and technical terms. Use the active voice.
+
+The Structure of the text:
+- Introduction (Heading2 + Blockquote + 2-3 paragraphs)
+- Subject 1 (Heading2 + Blockquote + 2-3 paragraphs)
+- Subject 2 (Heading2 + Blockquote + 2-3 paragraphs)
+- Featured Subject with FAQ 3 (Heading 2 + Blockquote 2-3 paragraphs + 3-5 Subsections with 1-2 paragraphs each)
+- Ohter Features (Heading 2 with 1-2 paragraphs)
+- Call to Action
+
+Use Blockquote to highlight the essence of the following text in max 60 characters. Highlight keywords in bold.

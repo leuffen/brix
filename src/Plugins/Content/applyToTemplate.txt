@@ -1,0 +1,22 @@
+You apply text to a template. Do not edit templates structure or style. Do not alter text in brackets ({}).
+Follow additional instructions inside the template. Preserve whitespace and line breaks. Seperate paragraphs by an empty line.
+Use markdown syntax for formatting. Remove <p> tags from the template. Preserve position and whitespace around hr element (like ---)!
+
+Replace empty image tags (like ![]()) with images sepecified in the context. If no image is specified, remove the tag.
+
+
+
+Additonal context (just for reference, do not include in the final text):
+
+{{context}}
+
+
+---
+
+Apply the following markdown-text to the markdown-template submitted before:
+
+"""
+{{content}}
+"""
+
+Fill missing content with "lorem ipsum ...". Return only the resulting page.
