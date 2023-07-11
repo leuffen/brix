@@ -65,7 +65,7 @@ class AngebotCreator
     public function save() {
         
         $cli = new CLIntputHandler();
-        $angebotId = $this->state->getNumber("angebotId");
+        $angebotId = $this->state->increment("angebotId");
         $name = $cli->askLine("Bitte geben Sie einen Namen für das Angebot (id: $angebotId) ein");
         
         $targetPath = $this->rootDir->withRelativePath("history")->withRelativePath(date("Y"))->withRelativePath($name . "_" . $angebotId)->assertDirectory(true);

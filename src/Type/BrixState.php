@@ -43,15 +43,17 @@ class BrixState
     public function getNumber(string $key, int $default=1) : int
     {
         $data = $this->loadData();
-        if ($data[$this->scope][$key] ?? null === null)
+        if ( ! isset($data[$this->scope][$key]))
             return $default;
         return intval($data[$this->scope][$key]);
     }
     
-    public function increment(string $key, int $by=1) : int
+    public function increment(string $key, int $by = 1) : int
     {
         $data = $this->loadData();
-        if ($data[$this->scope][$key] ?? null === null)
+        if ( ! isset ($data[$this->scope]))
+            $data[$this->scope] = [];
+        if ( ! isset($data[$this->scope][$key]))
             $data[$this->scope][$key] = 0;
         $data[$this->scope][$key] += $by;
         $this->saveData($data);
