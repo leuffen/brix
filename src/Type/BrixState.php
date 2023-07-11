@@ -38,5 +38,24 @@ class BrixState
         $data[$this->scope][$key] = $data;
         $this->saveData($data);
     }
+    
+    
+    public function getNumber(string $key, int $default=1) : int
+    {
+        $data = $this->loadData();
+        if ($data[$this->scope][$key] ?? null === null)
+            return $default;
+        return intval($data[$this->scope][$key]);
+    }
+    
+    public function increment(string $key, int $by=1) : int
+    {
+        $data = $this->loadData();
+        if ($data[$this->scope][$key] ?? null === null)
+            $data[$this->scope][$key] = 0;
+        $data[$this->scope][$key] += $by;
+        $this->saveData($data);
+        return $data[$this->scope][$key];
+    }
 
 }
