@@ -6,6 +6,7 @@ use Lack\OpenAi\Helper\JobTemplate;
 use Lack\OpenAi\LackOpenAiClient;
 use Leuffen\Brix\Plugins\ContextReplace\ContextReplace;
 use Leuffen\Brix\Plugins\ExtractUserData\ExtractUserData;
+use Leuffen\Brix\Plugins\RechtschreibungCorrect\RechtschreibungCorrect;
 use Leuffen\Brix\Type\BrixState;
 use Phore\Cli\CLIntputHandler;
 use Phore\FileSystem\PhoreDirectory;
@@ -44,6 +45,8 @@ class AngebotCreator
         $userData = $cli->askMultiLine("Bitte geben Sie die Daten ein");
         if ($userData === "")
             return;        
+        
+        $userData = (new RechtschreibungCorrect($this->client))->correct($userData);
         
         $tpl = new JobTemplate(__DIR__ . "/angebotprompt.txt");
         $tpl->setData([
