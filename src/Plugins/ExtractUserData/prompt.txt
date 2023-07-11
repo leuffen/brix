@@ -1,0 +1,10 @@
+Map Data in Inputdata into the datastructure defined below and return it as json encoded string.
+
+{{structure}}
+
+---
+
+InputData
+
+"""
+{{input}}
