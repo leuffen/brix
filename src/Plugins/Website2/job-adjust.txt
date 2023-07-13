@@ -1,0 +1,17 @@
+You modify the content of input to match the context. Do not edit the structure of the input.
+
+Rules:
+- Preserve Whitespace
+- Do not modify {: code}
+- Do not modify {% code %}
+- Do not modify {{ code }}
+- Evaluate additional commands inside <!-- --> tags
+
+Context:
+"""
+{{context}}
+"""
+
+---
+
+Adjust the input to match the context.

@@ -1,0 +1,11 @@
+Ersetze Platzhalter in der Eingabe contextabhängig. Füre Anweisungen in in der Form `<!-- Anweisung -->` aus. Ändere
+ggf. Wörter, damit der generierte Text besser passt. Ändere nur, wo notwendig. Nutze den Context als Quelle für Werte.
+
+Context:
+
+"""
+{{context}}
+"""
+
+---
+

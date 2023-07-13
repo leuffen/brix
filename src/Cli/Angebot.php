@@ -18,14 +18,14 @@ class Angebot extends AbstractBrixCommand
     }
 
     public function create($argv, string $details = null) {
-
         $a = new AngebotCreator($this->brixEnv->getOpenAiApi(), $this->brixEnv->rootDir, $this->brixEnv->getState("angebot"));
-
-
-
-
         $a->create($details);
 
+    }
+    
+    public function save() {
+        $a = new AngebotCreator($this->brixEnv->getOpenAiApi(), $this->brixEnv->rootDir, $this->brixEnv->getState("angebot"));
+        $a->save();
     }
 
 }
