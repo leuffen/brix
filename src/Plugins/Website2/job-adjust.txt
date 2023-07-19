@@ -14,4 +14,4 @@ Context:
 
 ---
 
-Adjust the input to match the context.
+Adjust the input to match the context. Do not remove content unless told so. Follow and replace rules provided in <!-- --> tags.
