@@ -85,9 +85,9 @@ class ContentCreator
         $prompt = $aiContent["prompt"] ?? "";
         $templatePid = $aiContent["template_pid"] ?? "";
 
-        $brainstorm = $this->brainstormText($subject);
-        $structure = $this->suggestTextStructure($brainstorm . $subject);
-        $meta = $this->suggestMetaInformation($brainstorm . $structure);
+    //       $brainstorm = $this->brainstormText($subject);
+        $structure = $this->suggestTextStructure($subject);
+        $meta = $this->suggestMetaInformation($subject . "\n" . $structure);
 
         $page->header["title"] = $meta->title;
         $page->header["description"] = $meta->description;
