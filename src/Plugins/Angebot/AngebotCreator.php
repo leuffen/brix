@@ -66,11 +66,15 @@ class AngebotCreator
         
         $cli = new CLIntputHandler();
         $angebotId = $this->state->increment("angebotId");
+        
         $name = $cli->askLine("Bitte geben Sie einen Namen für das Angebot (id: $angebotId) ein");
+        if ($name === "")
+            return;
         
         $targetPath = $this->rootDir->withRelativePath("history")->withRelativePath(date("Y"))->withRelativePath($name . "_" . $angebotId)->assertDirectory(true);
         $path = $this->rootDir->withRelativePath("current")->assertDirectory()->copyTo($targetPath);
         $this->state->increment("angebotId");
+        echo "\nAngebot gespeichert unter: " . $path->getUri() . "\n";
             
     }
 }
