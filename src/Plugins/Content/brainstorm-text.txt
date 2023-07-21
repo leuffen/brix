@@ -47,4 +47,4 @@ Structure of the text:
 - Generate a optimal outline as a numbered list (markdown) of content sections. What information should be in each section?
 
 
-Output text short, precise and to the point. Write in languate "{{language}}".
+Output text short, precise and to the point. Write in language "{{language}}".
