@@ -72,9 +72,9 @@ class AngebotCreator
             return;
         
         $targetPath = $this->rootDir->withRelativePath("history")->withRelativePath(date("Y"))->withRelativePath($name . "_" . $angebotId)->assertDirectory(true);
-        $path = $this->rootDir->withRelativePath("current")->assertDirectory()->copyTo($targetPath);
+        $this->rootDir->withRelativePath("current")->assertDirectory()->moveTo($targetPath);
         $this->state->increment("angebotId");
-        echo "\nAngebot gespeichert unter: " . $path->getUri() . "\n";
+        echo "\nAngebot gespeichert unter: " . $targetPath->getUri() . "\n";
             
     }
 }
