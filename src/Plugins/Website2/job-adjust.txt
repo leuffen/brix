@@ -5,7 +5,10 @@ Rules:
 - Do not modify {: code}
 - Do not modify {% code %}
 - Do not modify {{ code }}
-- Evaluate additional commands inside <!-- --> tags
+- Evaluate additional commands inside <!-- --> tags and remove afterwards
+- Do not alter structure of Headings
+- Do not add or remove images or blockquotes
+- Preserve structural headings like `## &nbsp;` and hr `---`
 
 Context:
 """
@@ -14,4 +17,4 @@ Context:
 
 ---
 
-Adjust the input to match the context. Do not remove content unless told so. Follow and replace rules provided in <!-- --> tags.
+Adjust the input to match the context. Do not remove content unless told so. Return matching content as it is.

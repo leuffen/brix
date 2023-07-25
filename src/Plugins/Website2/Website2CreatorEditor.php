@@ -10,6 +10,7 @@ use Lack\OpenAi\LackOpenAiClient;
 use Lack\OpenAi\LackOpenAiResponse;
 use Leuffen\Brix\Functions\SingleFileAccessFunctions;
 use Leuffen\Brix\Plugins\Seo\SeoAnalyzer;
+use Phore\Cli\CLIntputHandler;
 
 class Website2CreatorEditor
 {
@@ -65,10 +66,12 @@ class Website2CreatorEditor
         $page->header["keywords"] = implode(", ", $ret->keywords);
         $this->targetRepo->storePage($page);
         
-        // Remove Temp file
-        $pagePid->setTmp(null);
-
-      
+        
+        $cli = new CLIntputHandler();
+        if ($cli->askBool("Save page?", true)) {
+            // Remove Temp file
+            $pagePid->setTmp(null);
+        }
         
     }
     
