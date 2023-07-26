@@ -5,6 +5,7 @@ namespace Leuffen\Brix;
 
 
 use Leuffen\Brix\Cli\Angebot;
+use Leuffen\Brix\Cli\AutoCorrect;
 use Leuffen\Brix\Cli\Chat;
 use Leuffen\Brix\Cli\CliCommands;
 use Leuffen\Brix\Cli\File;
@@ -20,7 +21,11 @@ CliDispatcher::addClass(Shell::class);
 CliDispatcher::addClass(Website::class);
 CliDispatcher::addClass(Angebot::class);
 CliDispatcher::addClass(Website2::class);
+
 CliDispatcher::addClass(File2::class);
+
+CliDispatcher::addClass(AutoCorrect::class);
+
 
 
 
