@@ -14,6 +14,7 @@ use Leuffen\Brix\Plugins\Seo\SeoAnalyzer;
 use Leuffen\Brix\Plugins\Website\WebsiteCreatorEditor;
 use Leuffen\Brix\Plugins\Website2\Website2CreatorEditor;
 use Leuffen\Brix\Type\BrixEnv;
+use Phore\Cli\CLIntputHandler;
 use Phore\Cli\Exception\CliException;
 
 class Website2
@@ -40,7 +41,15 @@ class Website2
         $pid = $argv[0];
         
         $targetPage = $this->targetRepo->selectPid($pid, $lang)->create();
-        $instructions = $this->templateRepo->selectPid($pid, $lang)->get(true);
+        $instructions = $this->templateRepo->selectPid($pid, $lang);
+        if ( ! $instructions->exists()) {
+            $cli = new CLIntputHandler();
+            $title = $cli->askLine("[New site from _default] Enter title for page {$pid} (lang: {$lang}):");
+            $aiInstrStr = $cli->askMultiLine("[New site from _default] Enter adjust instructions for page {$pid} (lang: {$lang}):");
+            $instructions = $instructions->getDefault();
+            $instructions->header["_ai_instructions"] = $aiInstrStr;
+            $instructions->header["title"] = $title;
+        }
 
         $targetPage->header = $instructions->header;
         $targetPage->body = $instructions->body;

@@ -45,7 +45,7 @@ class SingleFileAccessFunctions
         return $this->file->get_contents();
     }
 
-    #[AiFunction("Write modified data to datasource. Always provide data in parameter content.")]
+    #[AiFunction("Write data to datasource. Usage: `writeData(content : string) : void`")]
     public function writeData(#[AiParam("Content to save to datasource. Required!")] string $content) {
         if ($this->outFile instanceof \Closure)
             return ($this->outFile)($content);

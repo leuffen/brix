@@ -26,22 +26,10 @@ class Website2CreatorEditor
 
 
 
-    public function createPage($pid, $lang) {
-        $targetPage = $this->targetRepo->selectPid($pid, $lang)->create();
-        $instructions = $this->templateRepo->selectPid($pid, $lang)->get();
-
-        $targetPage->body = $instructions->body;
-        $targetPage->header = $instructions->header;
-        
-        $this->targetRepo->storePage($targetPage);
-    }
-
 
     public function adjust ($pid, $lang) {
         $tpl = new JobTemplate(__DIR__ . "/job-adjust.txt");
-        $tpl->setData([
-            "context" => $this->context,
-        ]);
+        
         $pagePid = $this->targetRepo->selectPid($pid, $lang);
         if ($pagePid->hasTmp()) {
             $page = $pagePid->getTmp();
@@ -49,7 +37,11 @@ class Website2CreatorEditor
             $page = $pagePid->get();
             $pagePid->setTmp($page);
         }
-       
+        $tpl->setData([
+            "context" => $this->context,
+            "title" => $page->header["title"] ?? "undefined",
+            "ai_instructions" => $page->header["_ai_instructions"] ?? ""
+        ]);
         $this->client->reset($tpl->getSystemContent());
         $this->client->getCache()->clear();
         $this->client->textComplete([
