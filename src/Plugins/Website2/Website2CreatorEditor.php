@@ -62,7 +62,7 @@ class Website2CreatorEditor
         
         $ret = (new SeoAnalyzer($this->client))->analyze($page->body);
         $page->header["description"] = $ret->metaDescription;
-        $page->header["title"] = $ret->title;
+      //  $page->header["title"] = $ret->title;
         $page->header["keywords"] = implode(", ", $ret->keywords);
         $this->targetRepo->storePage($page);
         
