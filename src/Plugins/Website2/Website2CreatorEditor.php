@@ -3,6 +3,7 @@
 namespace Leuffen\Brix\Plugins\Website2;
 
 use Lack\Frontmatter\Repo\FrontmatterRepo;
+use Lack\Frontmatter\Repo\FrontmatterRepoPid;
 use Lack\OpenAi\Attributes\AiFunction;
 use Lack\OpenAi\Attributes\AiParam;
 use Lack\OpenAi\Helper\JobTemplate;
@@ -26,10 +27,16 @@ class Website2CreatorEditor
 
 
 
+    private $modifiedPages = [];
 
-    public function adjust ($pid, $lang) {
+    public function adjust (FrontmatterRepoPid|string $pid, string $lang = null) {
         $tpl = new JobTemplate(__DIR__ . "/job-adjust.txt");
-        
+
+        if ($pid instanceof FrontmatterRepoPid) {
+            $pagePid = $pid;
+        } else {
+            $pagePid = $this->targetRepo->selectPid($pid, $lang);
+        }
         $pagePid = $this->targetRepo->selectPid($pid, $lang);
         if ($pagePid->hasTmp()) {
             $page = $pagePid->getTmp();
@@ -42,7 +49,7 @@ class Website2CreatorEditor
             "title" => $page->header["title"] ?? "undefined",
             "ai_instructions" => $page->header["_ai_instructions"] ?? ""
         ]);
-        $this->client->reset($tpl->getSystemContent());
+        $this->client->reset($tpl->getSystemContent(), 0.4);
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
@@ -50,24 +57,28 @@ class Website2CreatorEditor
         ], streamer: function (LackOpenAiResponse $response) use ($page) {
             $page->body = $response->getTextCleaned();
             $this->targetRepo->storePage($page);
-        });  
-        
+        });
+
         $ret = (new SeoAnalyzer($this->client))->analyze($page->body);
         $page->header["description"] = $ret->metaDescription;
       //  $page->header["title"] = $ret->title;
         $page->header["keywords"] = implode(", ", $ret->keywords);
         $this->targetRepo->storePage($page);
-        
-        
-        $cli = new CLIntputHandler();
-        if ($cli->askBool("Save page?", true)) {
-            // Remove Temp file
-            $pagePid->setTmp(null);
-        }
-        
+
+
+        $this->modifiedPages[] = $pagePid;
+
+
     }
-    
-    
-  
+
+
+    public function saveAll () {sleep(2);
+
+        foreach ($this->modifiedPages as $page) {
+            $page->setTmp(null);
+        }
+    }
+
+
 
 }

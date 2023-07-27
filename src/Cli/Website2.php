@@ -39,7 +39,7 @@ class Website2
             throw new CliException("create [pid] expects exact 1 parameter");
 
         $pid = $argv[0];
-        
+
         $targetPage = $this->targetRepo->selectPid($pid, $lang)->create();
         $instructions = $this->templateRepo->selectPid($pid, $lang);
         if ( ! $instructions->exists()) {
@@ -57,7 +57,7 @@ class Website2
         $targetPage->header["lang"] = $lang;
 
         $this->targetRepo->storePage($targetPage);
-        
+        sleep (1);
         echo "Created page: $pid ($lang)\n";
     }
 
@@ -74,17 +74,37 @@ class Website2
         if (count($argv) !== 1)
             throw new CliException("modify [pid] expects exact 1 parameter");
 
-        $pid = $argv[0];
+        $pidSelector = $argv[0];
         $logic = new Website2CreatorEditor(
             context: $this->brixEnv->contextCombined,
             targetRepo: $this->targetRepo,
             templateRepo: $this->templateRepo,
             client: $this->brixEnv->getOpenAiApi()
         );
-        
-        $logic->adjust($pid, $lang);
+        $cli = new CLIntputHandler();
+
+        foreach ($this->targetRepo->list($pidSelector) as $pid) {
+            if ( ! $pid->hasTmp())
+                continue;
+            if ( ! $cli->askBool("Temporary version detected for '{$pid}'. Use this as input?", true))
+                $pid->setTmp(null);
+
+        }
+
+        foreach ($this->targetRepo->list($pidSelector) as $pid) {
+            $logic->adjust($pid, $lang);
+        }
+
+        sleep(3);
+        echo "\n\n";
+
+        if ($cli->askBool("Save page?", true)) {
+            // Remove Temp file
+            $logic->saveAll();
+        }
+
     }
-    
-    
-    
+
+
+
 }

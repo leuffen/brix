@@ -1,11 +1,12 @@
-You modify the content of input to match the context. Do not edit the structure of the input.
+You modify the content according to the instructions provided after `@todo` within the context and to match the context. Do not edit the structure of the input.
 
 Rules:
+- Remove @todo rules after you have applied them
 - Preserve Whitespace
 - Do not modify {: code}
 - Do not modify {% code %}
 - Do not modify {{ code }}
-- Evaluate additional commands inside <!-- --> tags and remove afterwards
+- Do not modify <!-- code -->
 - Do not alter structure of Headings
 - Do not add or remove images or blockquotes
 - Preserve structural headings like `## &nbsp;` and hr `---`
@@ -17,7 +18,7 @@ Context:
 
 ---
 
-Adjust the input to match the context. Do not remove content unless told so. Return matching content as it is.
+Apply changes to the input marked by `@todo` and adjust the input to match the context. Do not remove content unless told so. Return matching content as it is.
 
 Content to be applied to the input:
 """
