@@ -1,4 +1,4 @@
-You modify the content according to the instructions provided after `@todo` within the context and to match the context. Do not edit the structure of the input.
+You modify the content according to instructions and to match the context. Do not edit the structure of the input.
 
 Rules:
 - Remove @todo rules after you have applied them
@@ -18,7 +18,7 @@ Context:
 
 ---
 
-Apply changes to the input marked by `@todo` and adjust the input to match the context. Do not remove content unless told so. Return matching content as it is.
+ Adjust the input to match the context. Apply changes to the input marked by `@todo`. Do not remove content unless told so. Return matching content as it is.
 
 Content to be applied to the input:
 """

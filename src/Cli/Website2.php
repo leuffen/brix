@@ -3,6 +3,7 @@
 namespace Leuffen\Brix\Cli;
 
 use Lack\Frontmatter\Repo\FrontmatterRepo;
+use Lack\Frontmatter\Repo\FrontmatterRepoPid;
 use Lack\Keystore\Type\Service;
 use Lack\OpenAi\Helper\JobDescription;
 use Lack\OpenAi\LackOpenAiClient;
@@ -34,14 +35,21 @@ class Website2
     }
 
 
-    public function create(array $argv, string $lang = "de") {
+    public function create(array $argv, string $lang = "de", string $from = null) {
         if (count($argv) !== 1)
             throw new CliException("create [pid] expects exact 1 parameter");
 
         $pid = $argv[0];
 
         $targetPage = $this->targetRepo->selectPid($pid, $lang)->create();
-        $instructions = $this->templateRepo->selectPid($pid, $lang);
+        if ($from !== null) {
+             $instructions = $this->targetRepo->selectPid($from, $lang);
+             if ( ! $instructions->exists())
+                 throw new \InvalidArgumentException("Page '$from' does not exist.");
+        } else {
+            $instructions = $this->templateRepo->selectPid($pid, $lang);
+        }
+
         if ( ! $instructions->exists()) {
             $cli = new CLIntputHandler();
             $title = $cli->askLine("[New site from _default] Enter title for page {$pid} (lang: {$lang}):");
@@ -50,6 +58,9 @@ class Website2
             $instructions->header["_ai_instructions"] = $aiInstrStr;
             $instructions->header["title"] = $title;
         }
+
+        if ($instructions instanceof FrontmatterRepoPid)
+            $instructions = $instructions->get();
 
         $targetPage->header = $instructions->header;
         $targetPage->body = $instructions->body;
