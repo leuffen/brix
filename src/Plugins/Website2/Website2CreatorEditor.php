@@ -29,14 +29,8 @@ class Website2CreatorEditor
 
     private $modifiedPages = [];
 
-    public function adjust (FrontmatterRepoPid|string $pid, string $lang = null) {
+    public function adjust (FrontmatterRepoPid|string $pid, string $lang = null, bool $justMeta = false) {
         $tpl = new JobTemplate(__DIR__ . "/job-adjust.txt");
-
-        if ($pid instanceof FrontmatterRepoPid) {
-            $pagePid = $pid;
-        } else {
-            $pagePid = $this->targetRepo->selectPid($pid, $lang);
-        }
         $pagePid = $this->targetRepo->selectPid($pid, $lang);
         if ($pagePid->hasTmp()) {
             $page = $pagePid->getTmp();
@@ -44,20 +38,25 @@ class Website2CreatorEditor
             $page = $pagePid->get();
             $pagePid->setTmp($page);
         }
-        $tpl->setData([
-            "context" => $this->context,
-            "title" => $page->header["title"] ?? "undefined",
-            "ai_instructions" => $page->header["_ai_instructions"] ?? ""
-        ]);
-        $this->client->reset($tpl->getSystemContent(), 0.4);
-        $this->client->getCache()->clear();
-        $this->client->textComplete([
-            $page->body,
-            $tpl->getUserContent()
-        ], streamer: function (LackOpenAiResponse $response) use ($page) {
-            $page->body = $response->getTextCleaned();
-            $this->targetRepo->storePage($page);
-        });
+        if (! $justMeta) {
+
+            $tpl->setData([
+                "context" => $this->context,
+                "title" => $page->header["title"] ?? "undefined",
+                "ai_instructions" => $page->header["_ai_instructions"] ?? ""
+            ]);
+            $this->client->reset($tpl->getSystemContent(), 0.4);
+            $this->client->getCache()->clear();
+            $this->client->textComplete([
+                $page->body,
+                $tpl->getUserContent()
+            ], streamer: function (LackOpenAiResponse $response) use ($page) {
+                $page->body = $response->getTextCleaned();
+                $this->targetRepo->storePage($page);
+            });
+        }
+
+
 
         $ret = (new SeoAnalyzer($this->client))->analyze($page->body);
         $page->header["description"] = $ret->metaDescription;

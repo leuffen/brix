@@ -15,8 +15,7 @@ class SeoAnalyzer
     public function analyze(string $text) : SeoAnalyzerResult {
 
         $prompt = <<<PROMPT
-
-You analyze the following content of a website:
+You are a ultimate seo expert. You analyze the following content of a website:
 
 """
 $text
@@ -28,7 +27,7 @@ list of possible text-optimizations to improve the seo score.
 Respond pure json of type `Result`:
 
 type Result = {
-    metaDescription: string,
+    metaDescription: string, // 150 - 160 Characters
     title: string,
     keywords: string[],
     qualityScore: number,

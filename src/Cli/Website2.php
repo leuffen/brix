@@ -81,7 +81,7 @@ class Website2
         }
     }
 
-    public function adjust (array $argv, string $lang = "de") {
+    public function adjust (array $argv, string $lang = "de", bool $just_meta = false) {
         if (count($argv) !== 1)
             throw new CliException("modify [pid] expects exact 1 parameter");
 
@@ -103,7 +103,7 @@ class Website2
         }
 
         foreach ($this->targetRepo->list($pidSelector) as $pid) {
-            $logic->adjust($pid, $lang);
+            $logic->adjust($pid, $lang, $just_meta);
         }
 
         sleep(3);
