@@ -43,7 +43,7 @@ class Website2CreatorEditor
             $tpl->setData([
                 "context" => $this->context,
                 "title" => $page->header["title"] ?? "undefined",
-                "ai_instructions" => $page->header["_ai_instructions"] ?? ""
+                "ai_instructions" => $page->header["_ai_instructions"] ?? "Schreibe den Text auf den Context um!"
             ]);
             $this->client->reset($tpl->getSystemContent(), 0.4);
             $this->client->getCache()->clear();
@@ -55,15 +55,6 @@ class Website2CreatorEditor
                 $this->targetRepo->storePage($page);
             });
         }
-
-
-
-        $ret = (new SeoAnalyzer($this->client))->analyze($page->body);
-        $page->header["description"] = $ret->metaDescription;
-      //  $page->header["title"] = $ret->title;
-        $page->header["keywords"] = implode(", ", $ret->keywords);
-        $this->targetRepo->storePage($page);
-
 
         $this->modifiedPages[] = $pagePid;
 
