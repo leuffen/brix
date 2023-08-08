@@ -1,0 +1,16 @@
+You generate a seo optimized meta description for a html website. Return only the 150-160 characters long description and strip all html tags. Preserve the input language.
+An optimized meta description contains relevant keywords and a cta (call to action) at the end.
+Use Unicode emojis where posible.
+
+
+Start the output without any special encapulation like " or '.
+
+---
+
+Generate meta description for the webpage with title "{{title}}" and the content:
+
+"""
+{{content}}
+"""
+
+The absolute output limit is 150 characters.

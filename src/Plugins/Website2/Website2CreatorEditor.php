@@ -70,6 +70,12 @@ class Website2CreatorEditor
 
     }
 
+    
+    
+    public function adjustMeta() {
+        
+    }
+    
 
     public function saveAll () {sleep(2);
 

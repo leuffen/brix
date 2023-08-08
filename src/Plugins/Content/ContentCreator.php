@@ -101,5 +101,17 @@ class ContentCreator
 
     }
 
+    public function getMataDescription(string $pageTitle, string $content) : string {
+        $tpl = new JobTemplate(__DIR__ . "/meta-description.txt");
 
+        $tpl->setData([
+            "title" => $pageTitle,
+            "content" => $content
+        ]);
+
+        $this->client->reset($tpl->getSystemContent());
+        return $this->client->textComplete([$tpl->getUserContent()], streamOutput: true)->getTextCleaned();
+    }
+
+    
 }

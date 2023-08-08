@@ -105,6 +105,8 @@ class Website2
         }
 
         foreach ($this->targetRepo->list($pidSelector) as $pid) {
+            if ($pid->isSystemPid())
+                continue;
             $logic->adjust($pid, $lang, $just_meta);
         }
 
@@ -118,6 +120,35 @@ class Website2
 
     }
 
+    
+    public function adjustMeta (array $argv, string $lang = "de", bool $just_meta = false) {
+        if (count($argv) !== 1)
+            throw new CliException("modify [pid] expects exact 1 parameter");
+
+        $pidSelector = $argv[0];
+        $logic = new Website2CreatorEditor(
+            context: $this->brixEnv->contextCombined,
+            targetRepo: $this->targetRepo,
+            templateRepo: $this->templateRepo,
+            client: $this->brixEnv->getOpenAiApi()
+        );
+        $cli = new CLIntputHandler();
+        
+        $contentCreator = new ContentCreator($this->brixEnv->contextCombined, $this->brixEnv->getOpenAiApi());
+
+        
+        foreach ($this->targetRepo->list($pidSelector) as $pid) {
+            $cli->out("Adjusting meta for: $pid");
+            if ($pid->isSystemPid())
+                continue;
+            assert($pid instanceof FrontmatterRepoPid);
+            $page = $pid->get();
+            $page->header["description"] = $contentCreator->getMataDescription($page->header["title"], $page->body);
+            $cli->out("Description: " . $page->header["description"] . " Len: " . strlen($page->header["description"]));
+            $this->targetRepo->storePage($page);
+            
+        }
+    }
 
 
 }
