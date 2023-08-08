@@ -95,6 +95,8 @@ class Website2
         $cli = new CLIntputHandler();
 
         foreach ($this->targetRepo->list($pidSelector) as $pid) {
+            if ($pid->isSystemPid())
+                continue;
             if ( ! $pid->hasTmp())
                 continue;
             if ( ! $cli->askBool("Temporary version detected for '{$pid}'. Use this as input?", true))

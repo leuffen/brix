@@ -18,11 +18,12 @@ Context:
 
 ---
 
- Adjust the input to match the context. Apply changes to the input marked by `@todo`. Do not remove content unless told so. Return matching content as it is.
+Adjust the input to match the context. Apply changes to the input marked by `@todo`. Do not remove content unless told so. Return matching content as it is.
 
-Content to be applied to the input:
+Additional context to be applied to the input (split content into multiple sections if needed):
 """
 Title: {{title}}
 
 {{ai_instructions}}
 """
+
