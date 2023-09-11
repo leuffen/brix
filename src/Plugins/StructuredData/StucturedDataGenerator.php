@@ -37,7 +37,7 @@ Extract information from Context and return it as valid $extention format from t
 
 EOT;
         echo $prompt;
-        $ret = $this->client->textComplete($prompt, streamOutput: true);
+        $ret = $this->client->textComplete($prompt, streamOutput: true)->getTextCleaned();
 
         switch($extention) {
             case "json":
@@ -45,7 +45,7 @@ EOT;
                 break;
             case "yaml":
             case "yml":
-                $file->set_yaml(phore_yaml_decode($ret));
+                $file->set_contents($ret);
                 break;
 
             default: throw new \InvalidArgumentException("Cannot handle file extension '$extention'");
