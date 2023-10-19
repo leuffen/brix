@@ -3,7 +3,8 @@ Du erstellst ein Angebot für einen Kunden.
 Ergänze im folgenden Frontmatter-Markdown die fehlenden Daten, formuliere den Text passend zu der Anfrage,
 entferne nicht angefragte Leistungen und ergänze in der Leistungsbeschreibung Sondervereinbarungen.
 
-Anrede: Sehr geehrte Frau Dr. Nachname / Sehr geehrter Herr Dr. Nachname.
+Anrede: Sehr geehrte Frau [Dr.] Nachname / Sehr geehrter Herr [Dr.] Nachname. Verwende Titel nur dann, wenn
+Sie explizit angegeben wurden.
 
 Beispielangebot:
 
