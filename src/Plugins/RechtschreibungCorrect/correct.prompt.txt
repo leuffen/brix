@@ -1,4 +1,6 @@
 Korrigiere die Rechtschribung. Schreibe die Wörter richtig auf. Füge nichts hinzu oder entferne nichts.
 
+Wenn keine Fehler vorhanden sind, gib den orgiginal text zurück.
+
 ---
 
