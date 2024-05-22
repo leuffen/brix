@@ -27,7 +27,7 @@ class AngebotCreator
             "userContent" => $userContent
         ]);
 
-        $this->client->reset($tpl->getSystemContent());
+        $this->client->reset($tpl->getSystemContent(), 0.1, "gpt-4o");
 
         $result = $this->client->textComplete($userContent, streamOutput: true);
 
@@ -53,7 +53,7 @@ class AngebotCreator
             "demo_angebot" => $this->rootDir->withFileName("demo_angebot.md")->get_contents(),
             "userContent" => $userData
         ]);
-        $this->client->reset("Heute ist der " . date("d.m.Y") . ". " . $tpl->getSystemContent());
+        $this->client->reset("Heute ist der " . date("d.m.Y") . ". " . $tpl->getSystemContent(), 0.1, "gpt-4o");
         $result = $this->client->textComplete($tpl->getUserContent(), streamOutput: true)->getTextCleaned();
         
         $current->withFileName("angebot.md")->set_contents(trim($result));
